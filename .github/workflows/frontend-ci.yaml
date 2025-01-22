@@ -20,6 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
+          cache-dependency-path: starter/frontend/package-lock.json
           node-version: 18.14
           cache: 'npm'
 
@@ -43,6 +44,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
+          cache-dependency-path: starter/frontend/package-lock.json
           node-version: 18.14
           cache: 'npm'
 

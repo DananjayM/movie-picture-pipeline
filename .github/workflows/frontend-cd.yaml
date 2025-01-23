@@ -113,6 +113,7 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: 'latest'
+        id: install
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -121,6 +122,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
           role-duration-seconds: 120
+          
+      - name: Update kube config
+        run: aws eks --region us-east-1 update-kubeconfig --name cluster
 
       - name: Deploy to EKS cluster
         run: |

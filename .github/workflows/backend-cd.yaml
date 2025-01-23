@@ -121,6 +121,14 @@ jobs:
 
       - name: Install Kustomize
         uses: imranismail/setup-kustomize@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          role-duration-seconds: 120
       
       - name: Update image with GitHub SHA
         working-directory: starter/frontend/k8s

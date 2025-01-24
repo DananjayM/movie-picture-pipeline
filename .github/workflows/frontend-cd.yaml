@@ -12,7 +12,7 @@ permissions:
 
 env:
   REACT_APP_MOVIE_API_URL: http://localhost:5000
-  ECR_REPOSITORY: 091300544024.dkr.ecr.us-east-1.amazonaws.com/frontend
+  ECR_REPOSITORY: frontend
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:

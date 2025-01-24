@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 env:
-  ECR_REPOSITORY: backend
+  ECR_REPOSITORY: 091300544024.dkr.ecr.us-east-1.amazonaws.com/backend
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:

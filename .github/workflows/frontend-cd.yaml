@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 env:
-  REACT_APP_MOVIE_API_URL: http://localhost:5000
+  REACT_APP_MOVIE_API_URL: ${{ secrets.REACT_APP_MOVIE_API_URL }}
   ECR_REPOSITORY: frontend
   IMAGE_TAG: ${{ github.sha }}
 
@@ -121,9 +121,11 @@ jobs:
           role-duration-seconds: 120
       
       - name: Update image with GitHub SHA
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         working-directory: starter/frontend/k8s
         run: |
-          kustomize edit set image frontend=$ECR_REPOSITORY:$IMAGE_TAG
+          kustomize edit set image frontend=$REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Update kube config
         run: aws eks --region us-east-1 update-kubeconfig --name cluster

@@ -129,7 +129,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
           role-duration-seconds: 120
-      
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        
       - name: Update image with GitHub SHA
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
